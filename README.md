@@ -415,8 +415,8 @@ sudo apt install make -y
 #### 3. Clonar o repositório
  
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone git@github.com:Pianetti/AEDS---Trabalho-de-aquecimento.git
+cd AEDS---Trabalho-de-aquecimento
 ```
  
 #### 4. Configurar o arquivo de entrada
