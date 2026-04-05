@@ -565,6 +565,73 @@ Valor do fitness:        0.12761089205741882324
  
 **Conclusão dos testes:** Em ambos os casos o fitness convergiu rapidamente, sugerindo que para este conjunto de dados o algoritmo encontra uma boa solução em poucas gerações independentemente do tamanho da população. O aumento de M e G eleva o custo computacional sem necessariamente trazer ganhos proporcionais na qualidade da solução final.
 ---
+### Caso 3 — Validação Cruzada com Conjunto Externo (N=14, M=20, G=5000)
+ 
+Este caso de teste foi conduzido com um conjunto de pontos gerado externamente via ChatGPT, com o objetivo de validar se o algoritmo está produzindo resultados corretos e coerentes com os valores esperados.
+ 
+**Parâmetros utilizados:**
+ 
+| Parâmetro | Valor |
+|-----------|-------|
+| N (pontos) | 14 |
+| M (população) | 20 |
+| G (gerações) | 5000 |
+| Seed | 67 |
+| δ mutação | ±0.5 |
+ 
+**Arquivo input.dat utilizado:**
+```
+14 20 5000
+1  4.2
+2  7.9
+3  10.1
+4  13.8
+5  16.2
+6  19.5
+7  22.1
+8  25.9
+9  28.2
+10 31.7
+12 37.9
+14 43.8
+```
+ 
+Os pontos seguem aproximadamente a função linear **y ≈ 3x + 1**, com pequenas variações aleatórias simulando ruído nos dados.
+ 
+**Resultado esperado (calculado externamente):**
+ 
+| Parâmetro | Valor Esperado |
+|-----------|---------------|
+| a | ≈ 3.00 |
+| b | ≈ 1.10 |
+| MSE | 0.3 ~ 0.8 |
+| fitness | 0.55 ~ 0.77 |
+ 
+**Resultado obtido pelo programa:**
+ 
+| Parâmetro | Valor Obtido |
+|-----------|-------------|
+| a | 3.0908 |
+| b | 0.7818 |
+| MSE | 0.2248 |
+| fitness | 0.8164 |
+ 
+**Verificação da fórmula de fitness:**
+```
+fitness = 1 / (1 + MSE)
+fitness = 1 / (1 + 0.2248)
+fitness = 0.8164 ✔
+```
+ 
+**Análise do resultado:**
+ 
+O algoritmo encontrou uma solução **melhor do que a estimativa esperada**, com MSE de 0.2248 — inferior ao intervalo estimado de 0.3 ~ 0.8. Isso ocorre porque os dados não seguem exatamente y = 3x + 1, e o algoritmo ajustou os parâmetros para minimizar melhor o erro global, aumentando levemente `a` (3.09) e reduzindo `b` (0.78) em relação à estimativa inicial.
+ 
+**Conclusão:** ✅ Teste passou com folga. O resultado confirma que:
+- O cálculo do MSE está correto
+- O cálculo do fitness está correto
+- A ordenação da população funciona corretamente
+- O crossover e a mutação estão funcionando de forma eficiente
 
 ## 👨‍💻 Desenvolvido por
 
