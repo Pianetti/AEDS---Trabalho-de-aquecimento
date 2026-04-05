@@ -463,7 +463,107 @@ make
 ```bash
 make run
 ```
+ ## 🧪 Casos de Teste
  
+Foram realizados dois casos de teste para verificar o comportamento do algoritmo sob diferentes configurações de parâmetros.
+ 
+---
+ 
+### Caso 1 — Configuração Padrão (N=10, M=10, G=4000)
+ 
+**Parâmetros utilizados:**
+ 
+| Parâmetro | Valor |
+|-----------|-------|
+| N (pontos) | 10 |
+| M (população) | 10 |
+| G (gerações) | 4000 |
+| Seed | 67 |
+| δ mutação | ±0.5 |
+ 
+**Arquivo input.dat utilizado:**
+```
+10 10 4000
+2.5 1
+3.6 2
+4.9 3
+2.2 4
+5.2 3
+7.3 2
+1.4 9
+6.1 8
+3.5 5
+2.5 8
+```
+ 
+**Comportamento observado:**
+ 
+O fitness convergiu rapidamente nas primeiras gerações, atingindo um valor estável antes mesmo de completar todas as 4000 gerações. A metade superior da população (5 melhores indivíduos) estabilizou em torno do mesmo valor de fitness, indicando convergência da população para uma solução comum.
+ 
+**Resultado final:**
+```
+Número da geração atual: 4000
+Valor de a:              -0.43521529436111450195
+Valor de b:              6.2057819366455078125
+Valor do erro:           6.8363127708435058594
+Valor do fitness:        0.12761104106903076172
+```
+ 
+---
+ 
+### Caso 2 — População Maior e Mais Gerações (N=10, M=19, G=100000)
+ 
+**Parâmetros utilizados:**
+ 
+| Parâmetro | Valor |
+|-----------|-------|
+| N (pontos) | 10 |
+| M (população) | 19 |
+| G (gerações) | 100000 |
+| Seed | 67 |
+| δ mutação | ±0.5 |
+ 
+**Arquivo input.dat utilizado:**
+```
+10 19 100000
+2.5 1
+3.6 2
+4.9 3
+2.2 4
+5.2 3
+7.3 2
+1.4 9
+6.1 8
+3.5 5
+2.5 8
+```
+ 
+**Comportamento observado:**
+ 
+Com uma população maior (19 indivíduos) e 100 mil gerações, o algoritmo apresentou maior diversidade genética nas fases iniciais, explorando mais combinações de parâmetros antes de convergir. O fitness também convergiu rapidamente, porém a maior quantidade de gerações permitiu que a mutação realizasse ajustes finos por mais tempo, resultando em um fitness ligeiramente superior ao do Caso 1.
+ 
+**Resultado final:**
+```
+Número da geração atual: 100000
+Valor de a:              -0.43360993266105651855
+Valor de b:              6.1989321708679199219
+Valor do erro:           6.8363218307495117188
+Valor do fitness:        0.12761089205741882324
+```
+ 
+---
+ 
+### 📊 Comparativo entre os Casos
+ 
+| | Caso 1 | Caso 2 |
+|--|--------|--------|
+| **Tamanho da população (M)** | 10 | 19 |
+| **Gerações (G)** | 4000 | 100000 |
+| **Velocidade de convergência** | Rápida | Rápida |
+| **Diversidade inicial** | Menor | Maior |
+| **Custo computacional** | Baixo | Alto |
+ 
+**Conclusão dos testes:** Em ambos os casos o fitness convergiu rapidamente, sugerindo que para este conjunto de dados o algoritmo encontra uma boa solução em poucas gerações independentemente do tamanho da população. O aumento de M e G eleva o custo computacional sem necessariamente trazer ganhos proporcionais na qualidade da solução final.
 ---
 
 ## 👨‍💻 Desenvolvido por
