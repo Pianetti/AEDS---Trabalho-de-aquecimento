@@ -1,19 +1,18 @@
+#ifndef INDIVIDUO_HPP
+#define INDIVIDUO_HPP
+
 #include <iostream>
 #include <fstream>
 #include <string>
-using namespace std;
 #include <random>
 #include <iomanip>
 #include <cmath>
+using namespace std;
 
-#ifdef INDIVIDUO_HPP
-#define INDIVIDUO_HPP
 
-struct individio
+struct Individuo
 {
     float a, b, erro, fitness;
 };
-
-
 
 #endif
