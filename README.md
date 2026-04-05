@@ -3,25 +3,6 @@
 [![Status](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)]()
 [![Linguagem](http://img.shields.io/static/v1?label=Linguagem&message=C%2B%2B&color=GREEN&style=for-the-badge)]()
 
-## 📃 Introdução
-
-Este projeto foi desenvolvido como trabalho de aquecimento para a disciplina de Algoritmos e Estruturas de Dados I (AEDS I), ministrada pelo professor Michel Pires da Silva, no Centro Federal de Educação Tecnológica de Minas Gerais (CEFET-MG), Campus V – Divinópolis.
-
-O trabalho consiste na implementação de um Algoritmo Genético (AG) simplificado, aplicado ao problema de ajuste de parâmetros de uma função linear da forma:
-
-**ŷ = ax + b**
-
-Algoritmos Genéticos são meta-heurísticas de busca e otimização inspiradas nos princípios da seleção natural. Neste contexto, cada solução candidata — chamada de **indivíduo** — representa um par de parâmetros (a, b) que define uma reta no plano cartesiano. O algoritmo evolui iterativamente essa população de soluções, aplicando operações de **seleção**, **crossover** e **mutação**, com o objetivo de encontrar a reta que melhor se ajusta a um conjunto de pontos fornecido como entrada.
-
-A qualidade de cada indivíduo é medida por uma função de **fitness**, derivada do Erro Quadrático Médio (MSE) entre os valores reais e os valores estimados pela reta. Quanto menor o erro, maior o fitness — e melhor a solução.
-
-Além de introduzir conceitos de otimização heurística de forma prática, o projeto tem como objetivo consolidar habilidades fundamentais de programação em C++, incluindo manipulação de vetores, uso de estruturas dinâmicas, modularização de código e leitura/escrita de arquivos.
-
-# 🧬 Algoritmo Genético para Ajuste de Função Linear
-
-[![Status](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)]()
-[![Linguagem](http://img.shields.io/static/v1?label=Linguagem&message=C%2B%2B&color=GREEN&style=for-the-badge)]()
-
 ---
 
 ## 📃 Introdução
@@ -230,12 +211,12 @@ O ciclo evolutivo se repete por G gerações. A cada iteração, o algoritmo exe
 ```
 Para cada geração de 1 até G:
     │
-    ├── Se geração ÍMPAR → Crossover
+    ├── Se geração PAR → Crossover
     │       Sorteia pais aleatoriamente entre os M/2 melhores
     │       Gera filhos combinando a de um pai e b de outro
     │       Substitui os M/2 piores pelos filhos
     │
-    ├── Se geração PAR → Mutação
+    ├── Se geração ÍMPAR → Mutação
     │       Escolhe aleatoriamente entre mutar a ou b
     │       Aplica variação δ ∈ [-0.5, 0.5] no parâmetro escolhido
     │       Aplica nos M/2 piores indivíduos
