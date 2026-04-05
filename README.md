@@ -60,7 +60,7 @@ O erro e o fitness de cada indivíduo são calculados com base no conjunto de po
 **3. Seleção e Ordenação**
 Os indivíduos são ordenados por fitness em ordem decrescente. Os M/2 melhores são preservados e os M/2 piores são substituídos a cada geração.
 
-**4. Crossover (gerações ímpares)**
+**4. Crossover (gerações pares)**
 Os M/2 piores indivíduos são substituídos por filhos gerados a partir da combinação aleatória dos parâmetros dos M/2 melhores:
 
 | Pai 1 | a₁ | b₁ |
@@ -68,7 +68,7 @@ Os M/2 piores indivíduos são substituídos por filhos gerados a partir da comb
 | Pai 2 | a₂ | b₂ |
 | Filho | a₁ | b₂ |
 
-**5. Mutação (gerações pares)**
+**5. Mutação (gerações ímpares)**
 Os M/2 piores indivíduos sofrem uma alteração pontual em um dos parâmetros — a ou b — escolhido aleatoriamente, com uma pequena variação controlada δ:
 
 **p = (a, b) → p' = (a, b + δ)**
@@ -307,35 +307,8 @@ Exibe melhor indivíduo final
 ```
  ## 📊 Análises e Conclusões
  
-### 📌 1. Complexidade das Principais Rotinas
  
-A tabela abaixo apresenta a análise assintótica das principais funções implementadas:
- 
-| Função | Complexidade de Tempo | Complexidade de Espaço |
-|--------|----------------------|------------------------|
-| `calcularFitness` | O(M × N) | O(1) |
-| `ordenar` (Bubble Sort) | O(M²) | O(1) |
-| `crossover` | O(M/2) | O(1) |
-| `mutacao` | O(M/2) | O(1) |
-| `lerCoordenadas` | O(N) | O(N) |
-| **Loop completo (G gerações)** | **O(G × (M×N + M²))** | **O(M + N)** |
- 
-**Legenda:**
-- **N**: número de pontos do conjunto amostral
-- **M**: tamanho da população
-- **G**: número de gerações
- 
-#### 1.1 Gargalo Principal — Ordenação
- 
-O maior custo por geração vem da função `ordenar`, que utiliza Bubble Sort com complexidade **O(M²)**. Para populações pequenas (como M=10), o impacto é desprezível. Porém, para populações maiores, esse custo cresce quadraticamente e pode se tornar o principal gargalo do algoritmo. Uma alternativa mais eficiente seria o uso de algoritmos como Merge Sort ou Quick Sort, com complexidade **O(M log M)**.
- 
-#### 1.2 Custo de Avaliação
- 
-A função `calcularFitness` tem custo **O(M × N)** por geração, pois avalia todos os M indivíduos sobre os N pontos do conjunto amostral. Para G gerações, o custo total acumulado é **O(G × M × N)**, tornando-a a operação mais custosa em cenários com muitos pontos.
- 
----
- 
-### 📌 2. Comportamento do Erro ao Longo das Gerações
+### 📌 1. Comportamento do Erro ao Longo das Gerações
  
 O algoritmo apresenta três fases distintas de comportamento ao longo das gerações:
  
@@ -350,7 +323,7 @@ A população converge para um valor de fitness estável. A mutação com δ ∈
  
 ---
  
-### 📌 3. Impacto dos Parâmetros
+### 📌 2. Impacto dos Parâmetros
  
 #### Tamanho da População (M)
 Populações maiores aumentam a diversidade genética e reduzem o risco de convergência prematura, porém elevam o custo computacional quadraticamente devido ao Bubble Sort.
@@ -363,7 +336,7 @@ O valor de ±0.5 se mostrou adequado para refinamento após a convergência. Val
  
 ---
  
-### 📌 4. Conclusão
+### 📌 3. Conclusão
  
 O algoritmo genético implementado demonstrou ser capaz de ajustar progressivamente os parâmetros de uma função linear a um conjunto de dados, com melhora consistente do fitness ao longo das gerações. Os principais pontos observados foram:
  
@@ -564,6 +537,7 @@ Valor do fitness:        0.12761089205741882324
 | **Custo computacional** | Baixo | Alto |
  
 **Conclusão dos testes:** Em ambos os casos o fitness convergiu rapidamente, sugerindo que para este conjunto de dados o algoritmo encontra uma boa solução em poucas gerações independentemente do tamanho da população. O aumento de M e G eleva o custo computacional sem necessariamente trazer ganhos proporcionais na qualidade da solução final.
+
 ---
 ### Caso 3 — Validação Cruzada com Conjunto Externo (N=14, M=20, G=5000)
  
