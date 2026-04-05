@@ -16,7 +16,7 @@ int main() {
     int seed = 67;
     double valorA, valorB;
 
-    string caminho = "/home/samuel/TRABALHOS/AEDS1 - Trabalho de aquecimento/input/input.dat";
+    string caminho = "input/input.dat";
 
     lerArquivo(caminho, N, M, G);
 
@@ -40,7 +40,7 @@ int main() {
     ordenar(individuo, M);
 
     // Abre arquivo de saída
-    ofstream arquivoSaida("/home/samuel/TRABALHOS/AEDS1 - Trabalho de aquecimento/output/output.dat");
+    ofstream arquivoSaida("output/output.dat");
     if (!arquivoSaida.is_open()) {
         cerr << "Erro ao abrir output.dat!" << endl;
         return 1;
